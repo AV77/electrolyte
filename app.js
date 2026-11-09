@@ -70,8 +70,8 @@
           ${renderImage(video)}<span class="video-card__play" aria-hidden="true">▶</span>
           <span class="thumb-badges"><span class="thumb-quality">HD</span><span class="thumb-duration">${String(video.slides || 3).padStart(2,'0')} slides</span></span>
         </div>
-        <div class="video-card__details"><div class="avatar" aria-hidden="true">SS</div>
-          <div class="video-card__text"><h2 class="video-card__title" title="${esc(video.title)}">${esc(video.title)}</h2><div class="video-card__author">Seminar Studio</div>
+        <div class="video-card__details"><div class="avatar" aria-hidden="true">AV</div>
+          <div class="video-card__text"><h2 class="video-card__title" title="${esc(video.title)}">${esc(video.title)}</h2><div class="video-card__author">Anmol.V</div>
           <div class="video-card__stats">${esc(video.views||'1.2K')} views · ${video.postedDays ? `${video.postedDays} days ago` : 'Featured topic'}</div></div>
         </div></a>
       <button class="video-card__menu" data-save="${esc(video.id)}" type="button" aria-label="Add ${esc(video.short||video.title)} to Watch later" title="Add to Watch later"></button>
@@ -113,7 +113,7 @@
     if(!['categories','channels','playlists'].includes(state.view))return '';
     const names=state.view==='playlists'
       ? [{name:'Membrane Potentials',label:'01',hint:'Start with the voltage'},{name:'Electrolytes',label:'Na⁺',hint:'Meet the ions'},{name:'Transport & Pumps',label:'ATP',hint:'Keeping the gradients'},{name:'Muscle',label:'Ca²⁺',hint:'From impulse to movement'}]
-      : topicGroups.map((name,i)=>({name,label:['Na⁺','AP','ATP','Ca²⁺'][i],hint:state.view==='channels'?'Seminar Studio series':'Explore videos'}));
+      : topicGroups.map((name,i)=>({name,label:['Na⁺','AP','ATP','Ca²⁺'][i],hint:state.view==='channels'?'Anmol.V series':'Explore videos'}));
     return names.map(group=>`<button type="button" class="collection" data-collection="${esc(group.name)}"><span class="collection__art" style="--cover-color:${esc(groupColors[group.name])}">${esc(group.label)}</span><span class="collection__body"><span class="collection__name">${esc(group.name)}</span><span class="collection__count">${entries.filter(v=>v.category===group.name).length} presentations · ${esc(group.hint)}</span></span></button>`).join('');
   }
   function renderGrid() {
@@ -154,7 +154,7 @@
   }
   function renderRelated(video) {
     const related=entries.filter(v=>v.id!==video.id).sort((a,b)=>Number(b.category===video.category)-Number(a.category===video.category)).slice(0,10);
-    $('relatedGrid').innerHTML=related.map(v=>`<a class="related" href="${esc(linkFor(v.id))}" data-watch="${esc(v.id)}"><div class="related__thumb" style="background:${esc(v.accent||'#444')}">${renderImage(v)}<small>${String(v.slides||3).padStart(2,'0')} slides</small></div><div><div class="related__title">${esc(v.title)}</div><div class="related__meta">Seminar Studio</div><div class="related__meta">${esc(v.views)} views</div></div></a>`).join('');
+    $('relatedGrid').innerHTML=related.map(v=>`<a class="related" href="${esc(linkFor(v.id))}" data-watch="${esc(v.id)}"><div class="related__thumb" style="background:${esc(v.accent||'#444')}">${renderImage(v)}<small>${String(v.slides||3).padStart(2,'0')} slides</small></div><div><div class="related__title">${esc(v.title)}</div><div class="related__meta">Anmol.V</div><div class="related__meta">${esc(v.views)} views</div></div></a>`).join('');
     activateImageFallback($('relatedGrid'));
   }
   function updateSaveButtons() {
@@ -219,7 +219,7 @@
     $('watchCrumb').textContent=`/ ${video.category}`;
     $('watchTitle').textContent=video.title;
     $('watchViews').textContent=`${video.views||'1K'} views`;
-    $('watchDate').textContent='Seminar Studio';
+    $('watchDate').textContent='Anmol.V';
     $('watchSlides').textContent=`${video.slides||3} slides`;
     $('watchDescription').textContent=video.description||'A short physiology presentation.';
     $('watchTags').innerHTML=(video.tags||[]).map(tag=>`<span>#${esc(tag)}</span>`).join('');
