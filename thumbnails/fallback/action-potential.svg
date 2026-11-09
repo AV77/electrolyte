@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+    <defs>
+      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#356c9e"/><stop offset="1" stop-color="#36435d"/></linearGradient>
+      <linearGradient id="fog" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="url(#bg)"/>
+    <circle cx="960" cy="90" r="320" fill="#fff" opacity=".045"/>
+    <circle cx="126" cy="608" r="350" fill="#000" opacity=".055"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".08"><path d="M0 169H1200M0 338H1200M0 507H1200"/><path d="M240 0V675M480 0V675M720 0V675M960 0V675"/></g>
+    <text x="38" y="57" fill="#ffffff" fill-opacity=".75" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="bold" letter-spacing="5">SEMINAR STUDIO   /   PHYSIOLOGY</text>
+    <text x="39" y="624" fill="#fff" fill-opacity=".92" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="bold" letter-spacing="3">ACTION POTENTIAL</text>
+    <g>
+<path d="M165 125V530H1060" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="5"/>
+<g stroke="#fff" stroke-opacity=".2" stroke-width="2" stroke-dasharray="8 10"><path d="M165 265H1060M165 395H1060"/></g>
+<path d="M177 468H386L473 454 583 179 662 475 765 510 830 468H1046" stroke="#fff" stroke-opacity=".25" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glow)"/>
+<path d="M177 468H386L473 454 583 179 662 475 765 510 830 468H1046" stroke="url(#beam)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="583" cy="179" r="18" fill="white"/><text x="583" y="135" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="800" text-anchor="middle">+30 mV</text>
+</g>
+    </svg>

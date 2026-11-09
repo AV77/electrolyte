@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+    <defs>
+      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#56876b"/><stop offset="1" stop-color="#263f4c"/></linearGradient>
+      <linearGradient id="fog" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="url(#bg)"/>
+    <circle cx="960" cy="90" r="320" fill="#fff" opacity=".045"/>
+    <circle cx="126" cy="608" r="350" fill="#000" opacity=".055"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".08"><path d="M0 169H1200M0 338H1200M0 507H1200"/><path d="M240 0V675M480 0V675M720 0V675M960 0V675"/></g>
+    <text x="38" y="57" fill="#ffffff" fill-opacity=".75" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="bold" letter-spacing="5">SEMINAR STUDIO   /   PHYSIOLOGY</text>
+    <text x="39" y="624" fill="#fff" fill-opacity=".92" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="bold" letter-spacing="3">GIBBS–DONNAN</text>
+    <g>
+<rect x="170" y="157" width="855" height="359" rx="19" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".35" stroke-width="4"/>
+<path d="M600 159V515" stroke="#fff" stroke-opacity=".85" stroke-width="15" stroke-dasharray="16 14"/>
+<g fill="#fff" fill-opacity=".7"><circle cx="284" cy="273" r="24"/><circle cx="457" cy="239" r="24"/><circle cx="332" cy="410" r="24"/><circle cx="495" cy="443" r="24"/></g>
+<g fill="#fff" fill-opacity=".12" stroke="#fff" stroke-width="2"><circle cx="766" cy="281" r="40"/><circle cx="924" cy="366" r="40"/><circle cx="756" cy="452" r="40"/></g>
+<text x="284" y="281" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">−</text><text x="457" y="247" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">−</text><text x="332" y="419" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">−</text><text x="495" y="452" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">−</text>
+<text x="766" y="290" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">+</text><text x="924" y="375" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">+</text><text x="756" y="460" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="800" text-anchor="middle">+</text>
+</g>
+    </svg>

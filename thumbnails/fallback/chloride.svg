@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+    <defs>
+      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#366e90"/><stop offset="1" stop-color="#323b5b"/></linearGradient>
+      <linearGradient id="fog" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="url(#bg)"/>
+    <circle cx="960" cy="90" r="320" fill="#fff" opacity=".045"/>
+    <circle cx="126" cy="608" r="350" fill="#000" opacity=".055"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".08"><path d="M0 169H1200M0 338H1200M0 507H1200"/><path d="M240 0V675M480 0V675M720 0V675M960 0V675"/></g>
+    <text x="38" y="57" fill="#ffffff" fill-opacity=".75" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="bold" letter-spacing="5">SEMINAR STUDIO   /   PHYSIOLOGY</text>
+    <text x="39" y="624" fill="#fff" fill-opacity=".92" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="bold" letter-spacing="3">CHLORIDE</text>
+    <g>
+<circle cx="602" cy="336" r="199" fill="#fff" fill-opacity=".10" stroke="#fff" stroke-opacity=".55" stroke-width="4"/>
+<circle cx="602" cy="336" r="156" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3" stroke-dasharray="10 15"/>
+<text x="602" y="371" fill="white" fill-opacity="1" font-family="Arial,Helvetica,sans-serif" font-size="114" font-weight="800" text-anchor="middle">Cl⁻</text>
+<g fill="#fff" fill-opacity=".65"><circle cx="290" cy="205" r="16"/><circle cx="854" cy="191" r="18"/><circle cx="974" cy="434" r="13"/><circle cx="268" cy="460" r="16"/></g>
+</g>
+    </svg>

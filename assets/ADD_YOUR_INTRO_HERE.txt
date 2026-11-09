@@ -1,0 +1,7 @@
+Place your own non-explicit intro clip here, named exactly: intro.mp4
+
+Do not modify any of the 12 slide decks. The site automatically plays this single
+MP4 inside the existing player before opening each separate deck.
+
+If intro.mp4 is missing or unsupported, slides open normally.
+For the best browser compatibility, use MP4 with H.264 video and AAC audio.

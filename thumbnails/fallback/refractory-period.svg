@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+    <defs>
+      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#926650"/><stop offset="1" stop-color="#333c63"/></linearGradient>
+      <linearGradient id="fog" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="beam" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <rect width="1200" height="675" fill="url(#bg)"/>
+    <circle cx="960" cy="90" r="320" fill="#fff" opacity=".045"/>
+    <circle cx="126" cy="608" r="350" fill="#000" opacity=".055"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".08"><path d="M0 169H1200M0 338H1200M0 507H1200"/><path d="M240 0V675M480 0V675M720 0V675M960 0V675"/></g>
+    <text x="38" y="57" fill="#ffffff" fill-opacity=".75" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="bold" letter-spacing="5">SEMINAR STUDIO   /   PHYSIOLOGY</text>
+    <text x="39" y="624" fill="#fff" fill-opacity=".92" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="bold" letter-spacing="3">REFRACTORY PERIOD</text>
+    <g>
+<path d="M146 481H1073M166 150V530" stroke="#fff" stroke-opacity=".6" stroke-width="5" fill="none"/>
+<path d="M180 481H270L327 238 380 488 446 509 486 480H690L745 240 796 490 870 510 926 480H1055" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="350" y="185" width="354" height="340" fill="#fff" fill-opacity=".07"/>
+<path d="M350 155V528M704 155V528" stroke="#fff" stroke-opacity=".65" stroke-width="4" stroke-dasharray="10 10"/>
+<text x="527" y="204" fill="white" fill-opacity="0.85" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="800" text-anchor="middle">REFRACTORY</text>
+</g>
+    </svg>
