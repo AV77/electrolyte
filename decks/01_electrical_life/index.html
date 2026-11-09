@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrolyte</title>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/notes.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/black.css">
+  <style>
+    :root { --bg:#101114; --panel:#1b1d22; --panel2:#242730; --accent:#ff8a25; --accent2:#ffd166; --text:#f4f4f5; --muted:#b8bbc4; --red:#ff5d67; --blue:#60b5ff; --green:#61d6a5; }
+    .reveal { color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:30px; }
+    .reveal .slides { text-align:left; }
+    .reveal h1,.reveal h2,.reveal h3 { color:var(--text); text-transform:none; letter-spacing:-.035em; font-weight:800; }
+    .reveal h1 { font-size:2.15em; line-height:1.03; }
+    .reveal h2 { font-size:1.45em; margin-bottom:.45em; }
+    .reveal h3 { font-size:.85em; color:var(--accent2); }
+    .eyebrow { color:var(--accent); font-size:.42em; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin-bottom:1.2em; }
+    .sub { color:var(--muted); font-size:.72em; line-height:1.4; max-width:900px; }
+    .accent { color:var(--accent); }
+    .muted { color:var(--muted); }
+    .small { font-size:.58em; color:var(--muted); }
+    .tag { display:inline-block; border:1px solid #565b67; border-radius:999px; padding:.25em .7em; color:var(--muted); font-size:.43em; margin:.2em .25em .2em 0; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch; }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .card { background:linear-gradient(145deg,var(--panel2),var(--panel)); border:1px solid #383c46; border-radius:18px; padding:20px 22px; height:100%; box-sizing:border-box; }
+    .card h3 { margin:.05em 0 .45em; }
+    .card p,.card li { font-size:.62em; line-height:1.35; }
+    .card ul { margin:.2em 0 0 1.05em; }
+    .big-number { font-size:1.55em; font-weight:850; color:var(--accent); line-height:1; }
+    .ion { font-size:1.5em; font-weight:850; }
+    .na { color:#69b9ff; } .k { color:#ffbf69; } .ca { color:#6ee0ad; } .cl { color:#c6a4ff; }
+    .flow { display:flex; align-items:center; justify-content:center; gap:12px; margin:22px 0; flex-wrap:wrap; }
+    .flow span { background:var(--panel2); border:1px solid #444955; border-radius:12px; padding:12px 16px; font-size:.62em; }
+    .arrow { color:var(--accent); font-size:1.1em; font-weight:900; }
+    .bar { height:13px; border-radius:99px; background:#363a44; overflow:hidden; margin:8px 0 16px; }
+    .bar > i { display:block; height:100%; background:var(--accent); border-radius:99px; }
+    .callout { border-left:5px solid var(--accent); background:#202127; padding:16px 20px; border-radius:0 14px 14px 0; font-size:.72em; line-height:1.35; }
+    .warning { border-left-color:var(--red); }
+    .chartbox { background:#17191e; border:1px solid #3b404b; border-radius:16px; padding:16px; }
+    .phase { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:18px; }
+    .phase div { background:var(--panel2); border-radius:10px; padding:12px 8px; text-align:center; font-size:.52em; }
+    .phase b { display:block; color:var(--accent2); font-size:1.25em; margin-bottom:5px; }
+    .ecg { width:100%; height:135px; }
+    .ecg path { fill:none; stroke:var(--green); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+    .footer { position:absolute; bottom:8px; left:0; right:0; text-align:center; color:#777d89; font-size:13px; }
+    .reveal .progress { color:var(--accent); height:4px; }
+    .reveal .controls { color:var(--accent); }
+    .reveal .slide-number { color:#9da2ad; background:transparent; font-size:14px; }
+    .reveal ul { display:block; }
+    .reveal li { margin:.32em 0; }
+    .center { text-align:center !important; }
+    .center .sub { margin-left:auto; margin-right:auto; }
+    .divider { width:72px; height:5px; border-radius:9px; background:var(--accent); margin:22px 0; }
+    .center .divider { margin:22px auto; }
+    @media (max-width:700px) { .grid2,.grid3 { grid-template-columns:1fr; } .reveal { font-size:22px; } }
+    /* Physiology diagrams and compact medical layouts */
+    .phys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 12px
+    }
+
+    .phys-panel {
+      background: #20232b;
+      border: 1px solid #414650;
+      border-radius: 12px;
+      padding: 15px 18px
+    }
+
+    .phys-panel p,
+    .phys-panel li {
+      font-size: .57em;
+      line-height: 1.32;
+      margin: .2em 0
+    }
+
+    .phys-panel h3 {
+      font-size: .7em;
+      margin: 0 0 8px
+    }
+
+    .phys-k {
+      color: var(--accent2)
+    }
+
+    .phys-na {
+      color: var(--blue)
+    }
+
+    .phys-ca {
+      color: var(--green)
+    }
+
+    .phys-cl {
+      color: var(--purple)
+    }
+
+    .phys-diagram {
+      border: 1px solid #3c414a;
+      border-radius: 12px;
+      background: #181b21;
+      padding: 10px;
+      margin: 12px 0;
+    }
+
+    .phys-diagram svg {
+      width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .phys-caption {
+      font-size: .43em !important;
+      color: #a6abb5 !important;
+      margin: .5em 0 0 !important
+    }
+
+    .phys-steps {
+      display: flex;
+      align-items: stretch;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin: 15px 0
+    }
+
+    .phys-step {
+      background: #252831;
+      border: 1px solid #454954;
+      border-radius: 10px;
+      padding: 12px;
+      flex: 1;
+      min-width: 120px;
+      font-size: .51em;
+      line-height: 1.3
+    }
+
+    .phys-step b {
+      display: block;
+      color: #f4f4f5;
+      margin-bottom: 5px
+    }
+
+    .phys-arrow {
+      color: var(--accent);
+      align-self: center;
+      font-weight: 900
+    }
+
+    .phys-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: .51em
+    }
+
+    .phys-table th,
+    .phys-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #414650;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .phys-table th {
+      color: var(--accent2)
+    }
+
+    .phys-table td {
+      color: var(--muted)
+    }
+
+    .phys-key {
+      background: #30251c;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      color: #f4f4f5;
+      font-size: .57em;
+      margin-top: 12px
+    }
+
+    .phys-callout {
+      background: #262128;
+      border-left: 4px solid var(--red);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 14px;
+      margin-top: 10px;
+      font-size: .54em;
+      line-height: 1.3
+    }
+
+    .channel-diagram {
+  width: 100%;
+  max-width: 680px;
+  margin: 1rem auto;
+  font-family: inherit;
+}
+
+.channel-heading {
+  text-align: center;
+  color: #ff9418;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 1rem 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.channel-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.channel-state {
+  flex: 1;
+  min-width: 180px;
+  max-width: 210px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.channel-box {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  background: #22252e;
+  border: 1px solid #414653;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.membrane {
+  width: 85%;
+  height: 44px;
+  border-top: 6px solid #646a77;
+  border-bottom: 6px solid #646a77;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.channel-pore {
+  position: relative;
+  width: 36px;
+  height: 66px;
+  background: #17191f;
+  border-left: 9px solid #646a77;
+  border-right: 9px solid #646a77;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.gate {
+  position: absolute;
+  left: 50%;
+  width: 22px;
+  height: 6px;
+  background: #ff9418;
+  border-radius: 4px;
+  transform-origin: center;
+  margin-left: -11px;
+}
+
+/* top and bottom positions */
+.gate-top {
+  top: 4px;
+}
+
+.gate-bottom {
+  bottom: 4px;
+}
+
+/* closed gate */
+.gate-closed {
+  transform: rotate(0deg);
+}
+
+/* open gate variants */
+.gate-open-right {
+  transform: translateX(10px) rotate(45deg);
+}
+
+.gate-open-left {
+  transform: translateX(-10px) rotate(-45deg);
+}
+
+.ion-flow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff9418;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ion-flow.down {
+  top: 12px;
+}
+
+.ion-flow.up {
+  bottom: 10px;
+}
+
+.ion-flow.blocked {
+  top: 12px;
+  opacity: 0.45;
+}
+
+.ion-label {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 0.65rem;
+  color: #ffb347;
+  font-weight: 700;
+}
+
+.channel-state strong {
+  font-size: 0.8rem;
+  color: #f5f5f5;
+}
+
+.channel-state small {
+  font-size: 0.65rem;
+  color: #a1a1aa;
+  line-height: 1.25;
+}
+
+.potassium-row {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.cardiac-flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1.5rem auto;
+  width: 100%;
+}
+
+.cardiac-step {
+  flex: 1;
+  min-width: 0;
+  min-height: 150px;
+  padding: 0.8rem 0.5rem;
+  background: #22252e;
+  border: 1px solid #414653;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.phase-number {
+  color: #ff9418;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.cardiac-step strong {
+  color: #f5f5f5;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.ion-movement {
+  color: #ffb347;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cardiac-step small {
+  color: #a1a1aa;
+  font-size: 0.65rem;
+  line-height: 1.3;
+}
+
+.cardiac-flow > .arrow {
+  flex-shrink: 0;
+  color: #ff9418;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- Video 1 -->
+<section class="center">
+  <div class="eyebrow">General Medicine · Intro</div>
+  <h1>The electrical nature of life</span>.</h1>
+  <div class="divider"></div>
+  <p class="sub">Resting potential & action potentials</p>
+  <p>
+    <span class="tag">Na⁺</span>
+    <span class="tag">K⁺</span>
+  </p>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>The <span class="accent">resting membrane potential.</span></h2>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>Every cell has an electrical difference.</h2>
+  <div class="card">
+    <h3>Resting membrane potential</h3>
+    <div class="big-number">≈ -70 mV</div>
+    <p>Typical value for a large myelenated neuron at rest. The inside is negative relative to the outside.</p>
+    <ul>
+      <li>Unequal ion distribution</li>
+      <li>Selective membrane permeability</li>
+      <li>Na⁺/K⁺ pump maintains the gradients</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Every living cell maintains an electrical difference across its cell membrane.</li>
+      <li>This is called the resting membrane potential.</li>
+      <li>In a typical neuron, it is approximately minus 70 millivolts, meaning that the inside is negative relative to the outside.</li>
+      <li>This potential is created by unequal ion distribution and selective membrane permeability.</li>
+      <li>The sodium-potassium pump maintains the concentration gradients that make this possible.</li>
+      <li>Importantly, different cell types have different resting membrane potentials.</li>
+      <li>RMP of large myelinated neuron is -90mV</li>
+    </ul>
+
+    Clarify that - 70 mV is a typical neuronal value, not a universal value for every cell.<br />
+  </aside>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>Why is the inside negative?</h2>
+  <div class="card">
+    <h3><u>K⁺ leakage</u></h3>
+    <p>At rest, the membrane is much more permeable to K⁺ than to Na⁺. K⁺ tends to leave the cell, leaving behind relatively more negative charge.</p>
+    <div class="flow"><span class="k">K⁺ moves out</span><b class="arrow">→</b><span>inside becomes negative</span></div>
+
+    <h3><u>Na⁺-K⁺ pump</u></h3>
+    <p>
+      <span>More positive charges are pumped outside than inside</span><br />
+    </p>
+    <div style="width: 100%; max-width: 480px; margin: 0.5rem auto;">
+      <svg viewBox="0 0 700 300" style="display: block; width: 100%; height: auto; overflow: visible;">
+        <defs>
+          <marker id="pump-arrow" markerWidth="8" markerHeight="8"
+            refX="6" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6" fill="#ff9418"/>
+          </marker>
+        </defs>
+
+        <!-- Cell -->
+        <rect x="245" y="65" width="210" height="170" rx="14"
+          fill="#22252e" stroke="#414653" stroke-width="2"/>
+
+        <text x="350" y="140" text-anchor="middle"
+          fill="#f5f5f5" font-size="24" font-weight="bold">
+          CELL
+        </text>
+        <text x="350" y="170" text-anchor="middle"
+          fill="#a1a1aa" font-size="15">
+          Inside
+        </text>
+
+        <!-- 3 Na+ leaving -->
+        <g stroke="#ff9418" stroke-width="3"
+          fill="none" marker-end="url(#pump-arrow)">
+          <path d="M455 95 L565 45"/>
+          <path d="M455 150 L590 150"/>
+          <path d="M455 205 L565 255"/>
+        </g>
+
+        <g fill="#ffb347" font-size="19" font-weight="bold">
+          <text x="575" y="40">Na⁺</text>
+          <text x="600" y="155">Na⁺</text>
+          <text x="575" y="275">Na⁺</text>
+        </g>
+
+        <!-- 2 K+ entering -->
+        <g stroke="#ff9418" stroke-width="3"
+          fill="none" marker-end="url(#pump-arrow)">
+          <path d="M115 105 L245 130"/>
+          <path d="M115 195 L245 170"/>
+        </g>
+
+        <g fill="#ffb347" font-size="19" font-weight="bold">
+          <text x="75" y="100">K⁺</text>
+          <text x="75" y="210">K⁺</text>
+        </g>
+
+        <!-- Labels -->
+        <text x="350" y="35" text-anchor="middle"
+          fill="#ff9418" font-size="17" font-weight="bold">
+          3 Na⁺ OUT
+        </text>
+
+        <text x="350" y="280" text-anchor="middle"
+          fill="#ff9418" font-size="17" font-weight="bold">
+          2 K⁺ IN
+        </text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>Why is the inside negative?</h2>
+  <div class="card">
+    <h3><u>Impermeant Anions (Gibbs-Donnan Phenomenon)</u></h3>
+    <p>Inside the cell, are many negatively charged ions that cannot pass through the membrane channels.</p>
+    <div style="width: 100%; max-width: 480px; margin: 0.5rem auto;">
+      <svg viewBox="0 0 700 300" style="display: block; width: 100%; height: auto; overflow: visible;">
+
+        <!-- Cell -->
+        <rect x="245" y="55" width="210" height="190" rx="14"
+          fill="#22252e" stroke="#414653" stroke-width="2"/>
+
+        <!-- Negative charges inside -->
+        <g fill="#ff9418" font-size="30" font-weight="bold">
+          <text x="290" y="115">−</text>
+          <text x="365" y="115">−</text>
+          <text x="325" y="165">−</text>
+          <text x="390" y="205">−</text>
+          <text x="285" y="205">−</text>
+        </g>
+
+        <!-- Trapped anions label -->
+        <text x="350" y="85" text-anchor="middle"
+          fill="#f5f5f5" font-size="15" font-weight="bold">
+          IMPERMEANT ANIONS
+        </text>
+
+        <!-- Left-side labels -->
+        <g fill="#ffb347" font-size="17" font-weight="bold">
+          <text x="45" y="105">Proteins</text>
+          <text x="45" y="205">Phosphates</text>
+        </g>
+
+        <!-- Connecting lines -->
+        <g stroke="#ff9418" stroke-width="2" fill="none">
+          <path d="M125 100 L245 115"/>
+          <path d="M135 200 L245 190"/>
+        </g>
+
+        <!-- Right-side barrier explanation -->
+        <g fill="#ff9418" font-size="17" font-weight="bold">
+          <text x="490" y="115">Cannot pass</text>
+          <text x="490" y="140">through membrane</text>
+        </g>
+
+        <path d="M455 150 L480 150"
+          stroke="#ff9418" stroke-width="2"/>
+
+        <!-- Block symbol -->
+        <circle cx="475" cy="190" r="13"
+          fill="none" stroke="#ff9418" stroke-width="2"/>
+        <path d="M466 181 L484 199"
+          stroke="#ff9418" stroke-width="2.5"/>
+
+        <!-- Bottom label -->
+        <text x="350" y="280" text-anchor="middle"
+          fill="#ff9418" font-size="17" font-weight="bold">
+          NEGATIVE CHARGES REMAIN INSIDE
+        </text>
+
+      </svg>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Examples include:
+    <ul>
+      <li>Proteins</li>
+      <li>Organic phosphate compounds</li>
+      <li>Sulphate compounds</li>
+    </ul>
+  </aside>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>The <span class="accent">action potential.</span></h2>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>The <span class="accent">action potential.</span></h2>
+  <p class="callout muted">A rapid, temporary change in membrane voltage that carries an electrical signal.</p>
+  <div class="card" style="margin-top:18px">
+    <svg viewBox="0 0 900 380" width="100%" role="img" aria-label="Schematic neuronal action potential graph">
+      <defs>
+        <pattern id="grid" width="45" height="38" patternUnits="userSpaceOnUse"><path d="M45 0H0V38" fill="none" stroke="#343741" stroke-width="1"/></pattern>
+      </defs>
+      <rect x="65" y="25" width="800" height="285" fill="url(#grid)" rx="8"/>
+      <line x1="65" y1="310" x2="865" y2="310" stroke="#7b808b" stroke-width="2"/>
+      <line x1="65" y1="25" x2="65" y2="310" stroke="#7b808b" stroke-width="2"/>
+      <line x1="65" y1="235" x2="865" y2="235" stroke="#60b5ff" stroke-dasharray="7 7" opacity=".8"/>
+      <line x1="65" y1="190" x2="865" y2="190" stroke="#ffd166" stroke-dasharray="7 7" opacity=".8"/>
+      <path d="M65 235 L180 235 C215 235 230 228 245 190 C265 125 278 45 315 48 C345 50 365 140 395 205 C420 260 445 285 480 270 C510 255 525 235 565 235 L865 235"
+            fill="none" stroke="#ff8a25" stroke-width="6" stroke-linecap="round"/>
+      <text x="10" y="239" fill="#60b5ff" font-size="17">-70</text>
+      <text x="10" y="194" fill="#ffd166" font-size="17">-55</text>
+      <text x="18" y="52" fill="#f4f4f5" font-size="17">+30</text>
+      <text x="70" y="340" fill="#b8bbc4" font-size="16">Rest</text>
+      <text x="200" y="340" fill="#b8bbc4" font-size="16">Depolarization</text>
+      <text x="325" y="340" fill="#b8bbc4" font-size="16">Repolarization</text>
+      <text x="440" y="340" fill="#b8bbc4" font-size="16">Hyperpolarization</text>
+      <text x="700" y="183" fill="#ffd166" font-size="15">Threshold</text>
+      <text x="700" y="228" fill="#60b5ff" font-size="15">Resting level</text>
+    </svg>
+    <p class="small">Schematic neuron trace; values and shape are approximate.</p>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Now let's see what happens when a neuron is stimulated.</li>
+      <li><b>REST</b></li>
+      <li>The action potential begins when the membrane reaches its threshold, approximately minus 55 millivolts in a typical neuron.</li>
+      <li><b>DEPOLARISATION</b></li>
+      <li>Voltage-gated sodium channels open, allowing sodium to enter the cell.</li>
+      <li>The membrane potential rapidly becomes positive.</li>
+      <li>At the peak, sodium channels become inactivated, while voltage-gated potassium channels are open.</li>
+      <li><b>REPOLARISATION</b></li>
+      <li>During repolarization, potassium moves out of the cell, bringing the membrane potential back down.</li>
+      <li><b>HYPERPOLARISATION</b></li>
+      <li>Sometimes potassium continues to leave briefly, producing hyperpolarization.</li>
+      <li>Finally, the membrane returns towards its resting potential.</li>
+      <li>This entire sequence is what we call an action potential.</li>
+    </ul>
+  </aside>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The electrical nature of life</div>
+  <h2>The <span class="accent">rules</span> of the game.</h2>
+</section>
+
+<section>
+  <section>
+    <div class="eyebrow">01 · The electrical nature of life</div>
+      <h2>Two rules make the signal reliable.</h2>
+      <div class="card">
+        <h3><u>All-or-none law</u></h3>
+        <p>If threshold is reached at any point on the membrane of a normal fiber, a full action potential occurs over the entire membrane. If threshold is not reached, it does not. A stronger stimulus does not make that action potential taller; it can increase firing frequency.</p>
+
+        <h3><u>Refractory period</u></h3>
+        <p>The nerve can not respond to a second stimulus during much of the action potential, and even longer. This is referred to as the refactory period.</p>
+      </div>
+
+  <aside class="notes">
+    <ul>
+      <li>The action potential follows the all-or-none law.</li>
+      <li>If the stimulus fails to reach threshold, there is no action potential.</li>
+      <li>Once threshold is reached, a full action potential is generated.</li>
+      <li>Following this, the cell enters a refractory period.</li>
+      <li>During the absolute refractory period, another action potential cannot be generated because sodium channels are inactivated.</li>
+      <li>During the relative refractory period, another action potential is possible, but requires a stronger stimulus.</li>
+      <li>This also helps ensure proper electrical signalling.</li>
+    </ul>
+  </aside>
+  </section>
+  <section>
+    <svg viewBox="0 0 900 380" width="100%" role="img" aria-label="Schematic neuronal action potential graph">
+      <defs>
+        <pattern id="grid" width="45" height="38" patternUnits="userSpaceOnUse"><path d="M45 0H0V38" fill="none" stroke="#343741" stroke-width="1"/></pattern>
+      </defs>
+      <rect x="65" y="25" width="800" height="285" fill="url(#grid)" rx="8"/>
+      <rect x="180" y="25" width="200" height="285" fill="#ef4444" opacity="0.2"></rect>
+      <text x="230" y="60" fill="#f87171" font-size="16" text-anchor="middle" font-weight="bold">Absolute</text>
+      <text x="230" y="80" fill="#f87171" font-size="16" text-anchor="middle" font-weight="bold">refractory</text>
+      <text x="230" y="100" fill="#f87171" font-size="16" text-anchor="middle" font-weight="bold">period</text>
+      <rect x="380" y="25" width="155" height="285" fill="#eab308" opacity="0.2"></rect>
+      <text x="457" y="110" fill="#ca8a04" font-size="16" text-anchor="middle" font-weight="bold">Relative</text>
+      <text x="457" y="130" fill="#ca8a04" font-size="16" text-anchor="middle" font-weight="bold">refractory</text>
+      <text x="457" y="150" fill="#ca8a04" font-size="16" text-anchor="middle" font-weight="bold">period</text>
+      <line x1="65" y1="310" x2="865" y2="310" stroke="#7b808b" stroke-width="2"/>
+      <line x1="65" y1="25" x2="65" y2="310" stroke="#7b808b" stroke-width="2"/>
+      <line x1="65" y1="235" x2="865" y2="235" stroke="#60b5ff" stroke-dasharray="7 7" opacity=".8"/>
+      <line x1="65" y1="190" x2="865" y2="190" stroke="#ffd166" stroke-dasharray="7 7" opacity=".8"/>
+      <path d="M65 235 L180 235 C215 235 230 228 245 190 C265 125 278 45 315 48 C345 50 365 140 395 205 C420 260 445 285 480 270 C510 255 525 235 565 235 L865 235"
+            fill="none" stroke="#ff8a25" stroke-width="6" stroke-linecap="round"/>
+      <text x="10" y="239" fill="#60b5ff" font-size="17">-70</text>
+      <text x="10" y="194" fill="#ffd166" font-size="17">-55</text>
+      <text x="18" y="52" fill="#f4f4f5" font-size="17">+30</text>
+      <text x="70" y="340" fill="#b8bbc4" font-size="16">Rest</text>
+      <text x="200" y="340" fill="#b8bbc4" font-size="16">Depolarization</text>
+      <text x="325" y="340" fill="#b8bbc4" font-size="16">Repolarization</text>
+      <text x="440" y="340" fill="#b8bbc4" font-size="16">Hyperpolarization</text>
+      <text x="700" y="183" fill="#ffd166" font-size="15">Threshold</text>
+      <text x="700" y="228" fill="#60b5ff" font-size="15">Resting level</text>
+    </svg>
+  </section>
+</section>
+
+</div>
+</div>
+<script>
+  Reveal.initialize({
+    plugins:[ RevealNotes ]
+  });
+</script>
+</body>
+</html>
